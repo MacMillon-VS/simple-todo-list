@@ -1,0 +1,135 @@
+@import url("https://fonts.googleapis.com/css?family-Montserrat:400,800");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.main-todo-container {
+  text-align: center;
+  background-color: #151515;
+  color: azure;
+  min-height: 100vh;
+}
+.todo-input-container {
+  margin: auto;
+  padding-top: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.todo-input-container input[type="text"] {
+  width: 300px;
+  padding: 15px;
+  margin: 15px 0;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  background-color: #25273c;
+  color: #cbd5e1;
+  font-size: medium;
+}
+.title-text {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+.addBtn {
+  color: #141414;
+  font-weight: 600;
+  width: 130px;
+  height: 40px;
+  padding: 10px 25px;
+  font-family: "Lato", sans-serif;
+  font-weight: 500;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  border: none;
+  background-color: #0797eb;
+  box-shadow: 0 0 5px #62bcd3;
+}
+.addBtn:hover {
+  font-weight: 800;
+  box-shadow: 0 0 10px #70c1f0, 0 0 20px #51e7ec, 0 0 20px #fff inset;
+}
+.addBtn:disabled {
+  background-color: #06507a;
+}
+.delBtn {
+  background-color: #f51616;
+  color: whitesmoke;
+  font-weight: 600;
+  padding: 10px;
+  cursor: pointer;
+}
+.editBtn {
+  background-color: #2516f5;
+  color: whitesmoke;
+  font-weight: 600;
+  padding: 10px;
+  cursor: pointer;
+}
+.okBtn {
+  background-color: #16f516;
+  color: whitesmoke;
+  font-weight: 600;
+  padding: 10px;
+  cursor: pointer;
+}
+.logoutBtn button:hover {
+  color: black;
+  font-weight: 800;
+  box-shadow: 0 0 10px #70c1f0, 0 0 20px #51e7ec, 0 0 20px #fff inset;
+}
+#todo-list-container button:hover {
+  color: black;
+  font-weight: 800;
+  box-shadow: 0 0 10px #70c1f0, 0 0 20px #51e7ec, 0 0 20px #fff inset;
+}
+#todo-list-container {
+  display: flex;
+  justify-content: center;
+  margin-inline: auto;
+  align-items: center;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+.todo-title-div {
+  background-color: #25273c;
+  width: 500px;
+  padding: 10px;
+  color: #cbd5e1;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 18px;
+}
+
+.logoutBtn {
+  display: flex;
+  justify-content: flex-end;
+  padding: 50px;
+}
+
+@media only screen and (max-width: 480px) {
+  .todo-input-container {
+    flex-direction: column;
+    padding-top: 0px;
+  }
+  .todo-input-container input[type="text"] {
+    width: 90%;
+  }
+  #todo-list-container {
+    margin-top: 20px;
+    width: 90%;
+    overflow-x: hidden;
+  }
+  .logoutBtn {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+  }
+}

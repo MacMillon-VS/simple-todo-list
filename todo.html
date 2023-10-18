@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TodoList</title>
+    <link rel="stylesheet" href="todo.css">
+</head>
+
+<body>
+    <div>
+    </div>
+    <div class="main-todo-container">
+        <div class="logoutBtn">
+
+            <button class="delBtn" id="outBtn" type="button">Logout</button>
+        </div>
+        <div class="todo-input-container">
+            <h1 class="title-text">Todo </h1>
+            <input required placeholder="Enter task..." type="text" name="title"
+                id="todo-title">
+            <button onclick="addTask()" class="addBtn">Add Task</button>
+        </div>
+        <div id="todo-list-container"></div>
+    </div>
+    <script>
+        // const titleInput = document.getElementById('todo-title')
+        // titleInput.onchange=()=>handleInputChange()
+        // function handleInputChange(){
+        //     console.log(titleInput);
+        //     if(titleInput.value === ''){
+        //         document.querySelector('.addBtn').attributes = disabled;
+        //     }else{
+        //         document.querySelector('.addBtn').disabled = false;
+        //     }
+        // }
+        const todoListContainer = document.getElementById('todo-list-container');
+        function addTask() {
+            let todoId = Math.floor(Math.random() * 100)
+            let title = document.querySelector('#todo-title');
+            console.log(title);
+            if (!title.value) {
+                alert("please enter title")
+                return;
+            }
+            let todoListDiv = document.createElement('div');
+            todoListDiv.id = todoId
+            todoListDiv.className += "todo-title-div"
+
+            let todoListCheck = document.createElement('input')
+            todoListCheck.type = "checkbox"
+            todoListCheck.id = `box${todoId}`
+
+            let todoListItem = document.createElement('span')
+            todoListItem.innerHTML = title.value
+            todoListItem.id = `edit${todoId}`
+            todoListItem.className += "todo-title"
+
+            todoListCheck.addEventListener('change', function () {
+                if (this.checked) {
+                    todoListItem.style.textDecoration = 'line-through';
+                } else {
+                    todoListItem.style.textDecoration = 'none';
+                }
+            });
+
+
+            let todoListDeleteBtn = document.createElement('button')
+            todoListDeleteBtn.innerHTML = "delete"
+            todoListDeleteBtn.className += "delBtn"
+            todoListDeleteBtn.id = `deleteBtn${todoId}`
+            todoListDeleteBtn.onclick = () => deleteTodo(todoId)
+
+            let todoListEditBtn = document.createElement('button')
+            todoListEditBtn.innerHTML = "edit"
+            todoListEditBtn.className += "editBtn"
+            todoListEditBtn.id = `editBtn${todoId}`
+            todoListEditBtn.onclick = () => editTodo(todoId)
+
+            let todoListOkBtn = document.createElement('button')
+            todoListOkBtn.innerHTML = "Ok"
+            todoListOkBtn.className += "okBtn"
+            todoListOkBtn.id = `okBtn${todoId}`
+            todoListOkBtn.style.display = 'none'
+
+            todoListDiv.appendChild(todoListCheck)
+            todoListDiv.appendChild(todoListItem)
+            todoListDiv.appendChild(todoListEditBtn)
+            todoListDiv.appendChild(todoListDeleteBtn)
+            todoListDiv.appendChild(todoListOkBtn)
+            todoListContainer.appendChild(todoListDiv)
+            title.value = ""
+        }
+        function deleteTodo(todoId) {
+            console.log("deleted", todoId);
+            let delElem = document.getElementById(`${todoId}`)
+            if (delElem != null) {
+                delElem.remove();
+            }
+        }
+        function editTodo(todoId) {
+            let editTitle = document.getElementById(`edit${todoId}`)
+            let editBtnId = document.getElementById(`editBtn${todoId}`)
+            let deleteBtnId = document.getElementById(`deleteBtn${todoId}`)
+            let okBtnId = document.getElementById(`okBtn${todoId}`)
+            editTitle.contentEditable = "true"
+            okBtnId.style.display = 'inline'
+            editBtnId.style.display = 'none'
+            deleteBtnId.style.display = 'none'
+            editTitle.focus()
+            editTitle.addEventListener('blur', function () {
+                editTitle.contentEditable = "false";
+                // saveEditedDataToDB(todoId,editTitle.innerText)
+                okBtnId.style.display = 'none'
+                editBtnId.style.display = 'inline';
+                deleteBtnId.style.display = 'inline';
+            })
+            editTitle.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter') {
+
+                    editTitle.contentEditable = "false";
+                    // saveEditedDataToDB(todoId,editTitle.innerText)
+                    okBtnId.style.display = 'none'
+                    editBtnId.style.display = 'inline';
+                    deleteBtnId.style.display = 'inline';
+                }
+            })
+            okBtnId.onclick = () => {
+                editTitle.contentEditable = "false";
+                // saveEditedDataToDB(todoId,editTitle.innerText)
+                okBtnId.style.display = 'none'
+                editBtnId.style.display = 'inline';
+                deleteBtnId.style.display = 'inline';
+
+            }
+
+        }
+        let logOutButton = document.getElementById('outBtn')
+logOutButton.onclick =()=>window.location.href = 'index.html';
+    </script>
+</body>
+
+</html>
